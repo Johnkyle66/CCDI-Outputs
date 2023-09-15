@@ -1,9 +1,10 @@
+// John Kyle J. Desamparo
+// BSCS-2A
 #include <iostream>
-
 using namespace std;
 
 // function declaration
-void printArray(int* array, int size);
+void printArray(int array[], int size);
 void reversed(int array[], int size);
 
 int main(){
@@ -40,13 +41,12 @@ int main(){
     return 0;
 }
 
-
+// Function Definitions
 void printArray(int *array, int size) {
     cout << "[ ";
     for (int i=0; i<size; i++) { cout << array[i] << ", "; }
     cout << "]" << endl;
 };
-
 
 void reversed(int array[], int size) {
     int left = 0;

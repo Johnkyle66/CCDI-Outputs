@@ -1,42 +1,36 @@
+// John Kyle J. Desamparo
+// BSCS-2A
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 // function declaration:
-vector<int> filterRange(vector<int> &array, int min, int max);
-void printArray(vector<int> &array);
+void filterRange(int array[], int size, int min, int max);
+void printArray(int array[], int size);
 
 int main() {
 
     // variables
-    vector<int> array1 = {1,3,5,7,10};
-    vector<int> array2 = {1,3,5,7,10};
-    vector<int> array3 = {2,4,3,5};
-    vector<int> array4 = {2,4,3,5};
-    vector<int> array5 = {6,2,-3,5,7};
+    int array1[] = {1,3,5,7,10};
+    int array2[] = {1,3,5,7,10};
+    int array3[] = {2,4,3,5};
+    int array4[] = {2,4,3,5};
+    int array5[] = {6,2,-3,5,7};
 
     // output
-    cout << "Array 1: "; printArray(array1); cout << endl;
-    cout << "Array 2: "; printArray(array2); cout << endl;
-    cout << "Array 3: "; printArray(array3); cout << endl;
-    cout << "Array 4: "; printArray(array4); cout << endl;
-    cout << "Array 5: "; printArray(array5); cout << endl;
-
-    // Filter()
-    array1 = filterRange(array1, 4, 8);
-    array2 = filterRange(array2, -1, 4);
-    array3 = filterRange(array3, 2, 6);
-    array4 = filterRange(array4, 0, 4);
-    array5 = filterRange(array5, 3, 8);
+    cout << "Array 1 (4 to 8): "; printArray(array1, 5); cout << endl;
+    cout << "Array 2 (-1 to 4): "; printArray(array2, 5); cout << endl;
+    cout << "Array 3 (2 to 6): "; printArray(array3, 4); cout << endl;
+    cout << "Array 4 (0 to 4): "; printArray(array4, 4); cout << endl;
+    cout << "Array 5 (3 to 8): "; printArray(array5, 5); cout << endl;
 
     // results
     cout << "\nResults: \n";
-    cout << "Array 1: "; printArray(array1); cout << endl;
-    cout << "Array 2: "; printArray(array2); cout << endl;
-    cout << "Array 3: "; printArray(array3); cout << endl;
-    cout << "Array 4: "; printArray(array4); cout << endl;
-    cout << "Array 5: "; printArray(array5); cout << endl;
+    cout << "Array 1: "; filterRange(array1, 5, 4, 8); cout << endl;
+    cout << "Array 2: "; filterRange(array2, 5, -1, 4); cout << endl;
+    cout << "Array 3: "; filterRange(array3, 4, 2, 6); cout << endl;
+    cout << "Array 4: "; filterRange(array4, 4, 0, 4); cout << endl;
+    cout << "Array 5: "; filterRange(array5, 5, 3, 8); cout << endl;
 
     cout << "\nPress enter to exit.... ";
     cin.get();
@@ -44,25 +38,20 @@ int main() {
 }
 
 // function definitions:
-void printArray(vector<int> &array) {
+void printArray(int array[], int size) {
     cout << "[ ";
-
-    for (int i=0; i < array.size(); i++) {
+    for (int i=0; i<size; i++) {
         cout << array[i] << ", ";
     };
-
     cout << "]";
 };
 
-
-vector<int> filterRange(vector<int> &array, int min, int max) {
-    vector<int> filteredArray;
-
-    for (int i = 0; i < array.size(); i++) {
+void filterRange(int array[], int size, int min, int max){
+    cout << "[ ";
+    for (int i = 0; i<size; i++) {
         if (array[i] > min && array[i] < max) {
-            filteredArray.push_back(array[i]);
+            cout << array[i] << ", ";
         }
     }
-
-    return filteredArray;
+    cout << "]";
 }

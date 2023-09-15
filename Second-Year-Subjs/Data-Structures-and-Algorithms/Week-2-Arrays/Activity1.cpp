@@ -1,73 +1,56 @@
-#include <iostream>
-#include <vector>
-#include <variant>
-#include <string>
+// John Kyle J. Desamparo
+// BSCS-2A
 
-/* Issue - an array can only have 1 data type ie: int only or string only.
-So we will try and make our own data type/structure that can handle both */
+#include <iostream>
+
 using namespace std;
 
-// IntOrString is a custom data type that can handle both int and string
-using IntOrString = variant<int, string>;
 
-// Function Declaration
-// A function that takes a vector which is passed by reference and returns a vector with the type of IntOrString
-vector<IntOrString> makeItBig(vector<IntOrString>& array);
-void printArray(vector<IntOrString>& array);
+// function declaration
+void makeItBig(int array[], int size);
+void printArray(int array[], int size);
+
 
 int main() {
-
     // variables
-    vector<IntOrString> array1, array2, array3;
-
-    array1 = {-1,3,5,-5};
-    array2 = {2,4,6};
-    array3 = {-4,0,4};
+    int array1[4] = {-1,3,5,-5};
+    int array2[3] = {2,4,6};
+    int array3[3] = {-4,0,4};
 
     // output
     cout << "Original: \n";
-    cout << "array 1: ";    printArray(array1); 
-    cout << "array 2: ";    printArray(array2);
-    cout << "array 3: ";    printArray(array3);
-
-    makeItBig(array1);
-    makeItBig(array2);
-    makeItBig(array3);
+    cout << "array 1: ";    printArray(array1, 4); 
+    cout << "array 2: ";    printArray(array2, 3);
+    cout << "array 3: ";    printArray(array3, 3);
 
     // output
     cout << "\nMake It Big: \n";
-    cout << "array 1: ";    printArray(array1); 
-    cout << "array 2: ";    printArray(array2);
-    cout << "array 3: ";    printArray(array3);
+    cout << "array 1: ";    makeItBig(array1, 4);
+    cout << "array 2: ";    makeItBig(array2, 3); 
+    cout << "array 3: ";    makeItBig(array3, 3);
 
     cout << "\nPress enter to exit.... ";
     cin.get();
-
     return 0;
 }
 
-
-vector<IntOrString> makeItBig(vector<IntOrString>& array) {
-    int arraySize = array.size();
-
-    for (int i=0; i<arraySize; i++){
-        if (holds_alternative<int>(array[i]) && get<int>(array[i]) > 0) {
-            array[i] = "big";
+// function definitions
+void makeItBig(int array[], int size) {
+    cout << "[ ";
+    for (int i=0; i<size; i++) {
+        if (array[i] > 0) {
+            cout << "big, ";
+        } else {
+            cout << array[i] << ", ";
         }
     }
-
-    return array;
-};
-
-
-void printArray(vector<IntOrString>& array) {
-    cout << "[ ";
-
-    for (const auto& element : array) {
-        // checks if the element is a string or an integer before printing
-        if (holds_alternative<int>(element)) { cout << get<int>(element) << ", "; }
-        else if (holds_alternative<string>(element)) { cout << get<string>(element) << ", "; }
-    }
-
     cout << "]" << endl;
 }
+
+void printArray(int array[], int size) {
+    cout << "[ ";
+    for (int i=0; i<size; i++) {
+        cout << array[i] << ", ";
+    };
+    cout << "]" << endl;
+};
